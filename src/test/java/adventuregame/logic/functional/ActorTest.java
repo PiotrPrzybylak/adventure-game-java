@@ -22,14 +22,15 @@ class ActorTest {
 
     @Test
     void moveUpdatesCells() {
-        Player player = new Player(new Location(1, 1));
-        GameMap gameMap = aMap(player);
-        player = player.move(Direction.EAST, gameMap);
+        GameMap gameMap = aMap(new Player(new Location(1, 1)));
 
-        assertEquals(2, player.getLocation().x());
-        assertEquals(1, player.getLocation().y());
-//        assertEquals(null, gameMap.getCell(1, 1).getActor());
-//        assertEquals(player, gameMap.getCell(2, 1).getActor());
+        assertEquals(TileType.PLAYER, gameMap.getDrawable(1, 1));
+        assertEquals(TileType.FLOOR, gameMap.getDrawable(2, 1));
+
+        GameMap result = gameMap.movePlayer(Direction.EAST);
+
+        assertEquals(TileType.FLOOR, result.getDrawable(1, 1));
+        assertEquals(TileType.PLAYER, result.getDrawable(2, 1));
     }
 
 //    @Test
