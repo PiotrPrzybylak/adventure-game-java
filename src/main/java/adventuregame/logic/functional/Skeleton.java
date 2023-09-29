@@ -1,5 +1,6 @@
 package adventuregame.logic.functional;
 
+import adventuregame.logic.Direction;
 import adventuregame.logic.TileType;
 
 class Skeleton extends Actor<Skeleton> {
@@ -25,6 +26,13 @@ class Skeleton extends Actor<Skeleton> {
 
     public Skeleton move(GameMap map) {
         return move(random.getRandomDirection(), map);
+    }
+
+    private Skeleton move(Direction direction, GameMap map) {
+        Location newLocation =  map.getNeighbor(getLocation(), direction)
+                .filter(map::canEnter)
+                .orElse(getLocation());
+        return create(newLocation);
     }
 
     @Override
