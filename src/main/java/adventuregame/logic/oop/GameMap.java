@@ -63,7 +63,6 @@ class GameMap implements Game {
 
     public Game movePlayer(Direction direction) {
         player.move(direction);
-        moveMonsters();
         return next;
     }
 
@@ -85,6 +84,11 @@ class GameMap implements Game {
     @Override
     public int getPlayerHealth() {
         return getPlayer().getHealth();
+    }
+
+    @Override
+    public void moveGame() {
+        moveMonsters();
     }
 
     public void loadNextLevel() {

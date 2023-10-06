@@ -18,6 +18,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.time.Duration;
+
 public class JavaFxUI extends Application {
 
     private static Game map;
@@ -55,6 +57,20 @@ public class JavaFxUI extends Application {
 
         primaryStage.setTitle("Adventure Game");
         primaryStage.show();
+
+        new Thread(() -> {
+            for (; ; ) {
+
+                try {
+                    Thread.sleep(Duration.ofMillis(200));
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                map.moveGame();
+                refresh();
+
+            }
+        }).start();
     }
 
     private void onKeyReleased(KeyEvent keyEvent) {

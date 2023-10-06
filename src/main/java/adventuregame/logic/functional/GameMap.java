@@ -75,6 +75,11 @@ class GameMap implements Game {
         return player.getHealth();
     }
 
+    @Override
+    public void moveGame() {
+
+    }
+
     private GameMap moveMonsters() {
         GameMap gameMap = this;
         for (int i = 0; i < monsters.size(); i++) {
