@@ -1,6 +1,6 @@
 package adventuregame;
 
-import adventuregame.level.ClassPathLevelsProvider;
+import adventuregame.infrastructure.level.ClassPathLevelsProvider;
 import adventuregame.logic.Game;
 import adventuregame.logic.MapLoader;
 import adventuregame.ui.console.ConsoleUI;

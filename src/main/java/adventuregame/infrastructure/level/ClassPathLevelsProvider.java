@@ -1,4 +1,4 @@
-package adventuregame.level;
+package adventuregame.infrastructure.level;
 
 import adventuregame.logic.LevelProvider;
 
