@@ -1,5 +1,6 @@
 package adventuregame.logic.oop;
 
+import adventuregame.logic.Game;
 import adventuregame.logic.LevelProvider;
 import adventuregame.logic.TileType;
 
@@ -12,7 +13,7 @@ public class MapLoader implements adventuregame.logic.MapLoader {
         this.levelProvider = levelProvider;
     }
 
-    public GameMap loadMap(int level) {
+    public Game loadMap(int level) {
 
         Scanner scanner = new Scanner(levelProvider.getLevel(level));
         int width = scanner.nextInt();

@@ -12,7 +12,7 @@ abstract class Actor {
         this.cell.setActor(this);
     }
 
-    public void move(int dx, int dy) {
+    private void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (nextCell == null) {
         } else if (nextCell.canEnter()) {
