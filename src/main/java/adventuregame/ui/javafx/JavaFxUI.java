@@ -66,7 +66,7 @@ public class JavaFxUI extends Application {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                map.moveGame();
+                map = map.moveGame();
                 refresh();
 
             }

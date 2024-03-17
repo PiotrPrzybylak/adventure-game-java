@@ -4,5 +4,5 @@ public interface Game extends DrawableMap, Actionable {
 
     int getPlayerHealth();
 
-    void moveGame();
+    Game moveGame();
 }

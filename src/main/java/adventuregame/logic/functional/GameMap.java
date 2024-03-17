@@ -76,8 +76,8 @@ class GameMap implements Game {
     }
 
     @Override
-    public void moveGame() {
-
+    public Game moveGame() {
+        return moveMonsters();
     }
 
     private GameMap moveMonsters() {

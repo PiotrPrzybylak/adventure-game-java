@@ -87,8 +87,9 @@ class GameMap implements Game {
     }
 
     @Override
-    public void moveGame() {
+    public Game moveGame() {
         moveMonsters();
+        return this;
     }
 
     public void loadNextLevel() {
