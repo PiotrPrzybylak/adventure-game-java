@@ -61,8 +61,10 @@ class GameMap implements Game {
         }
     }
 
+    @Override
     public Game movePlayer(Direction direction) {
         player.move(direction);
+        moveMonsters();
         return next;
     }
 
