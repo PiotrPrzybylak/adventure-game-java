@@ -11,13 +11,14 @@ public class App {
 
         boolean oop = args.length > 0 && args[0].contains("oop");
         boolean console = args.length > 0 && args[0].contains("console");
+        boolean runMonstersIndependently = args.length > 0 && args[0].contains("realtime");
 
         Game game = loadGameMap(oop);
 
         if (console) {
             ConsoleUI.start(game);
         } else {
-            JavaFxUI.start(game);
+            JavaFxUI.start(game, runMonstersIndependently);
         }
     }
 

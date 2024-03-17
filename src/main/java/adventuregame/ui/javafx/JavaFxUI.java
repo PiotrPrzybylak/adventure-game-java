@@ -23,6 +23,7 @@ import java.time.Duration;
 public class JavaFxUI extends Application {
 
     private static Game map;
+    private static boolean runMonstersIndependently;
 
     private final Canvas canvas = new Canvas(
             map.width() * Tiles.TILE_WIDTH,
@@ -30,8 +31,9 @@ public class JavaFxUI extends Application {
     private final GraphicsContext context = canvas.getGraphicsContext2D();
     private final Label healthLabel = new Label();
 
-    public static void start(Game map) {
+    public static void start(Game map, boolean runMonstersIndependently) {
         JavaFxUI.map = map;
+        JavaFxUI.runMonstersIndependently = runMonstersIndependently;
         launch();
     }
 
@@ -58,9 +60,14 @@ public class JavaFxUI extends Application {
         primaryStage.setTitle("Adventure Game");
         primaryStage.show();
 
+        if (runMonstersIndependently) {
+            runMonstersIndependently();
+        }
+    }
+
+    private void runMonstersIndependently() {
         new Thread(() -> {
             for (; ; ) {
-
                 try {
                     Thread.sleep(Duration.ofMillis(200));
                 } catch (InterruptedException e) {
@@ -68,7 +75,6 @@ public class JavaFxUI extends Application {
                 }
                 map = map.moveGame();
                 refresh();
-
             }
         }).start();
     }
