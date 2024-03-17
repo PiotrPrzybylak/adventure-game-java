@@ -66,7 +66,7 @@ public class JavaFxUI extends Application {
     }
 
     private void runMonstersIndependently() {
-        new Thread(() -> {
+        Thread thread = new Thread(() -> {
             for (; ; ) {
                 try {
                     Thread.sleep(Duration.ofMillis(200));
@@ -76,7 +76,9 @@ public class JavaFxUI extends Application {
                 map = map.moveGame();
                 refresh();
             }
-        }).start();
+        });
+        thread.setDaemon(true);
+        thread.start();
     }
 
     private void onKeyReleased(KeyEvent keyEvent) {
