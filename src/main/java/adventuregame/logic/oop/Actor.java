@@ -5,7 +5,7 @@ import adventuregame.logic.TileType;
 
 abstract class Actor {
     private Cell cell;
-    private int health = 10;
+    protected int health = 10;
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -18,6 +18,8 @@ abstract class Actor {
         } else if (nextCell.canEnter()) {
             goTo(nextCell);
         } else if (nextCell.getActor() != null) {
+            Actor enemy = nextCell.getActor();
+            enemy.fight();
             health -= 2;
         }
     }
@@ -49,4 +51,15 @@ abstract class Actor {
     }
 
     abstract public TileType getTileType();
+
+    public void fight() {
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "{" +
+                "cell=" + cell +
+                ", health=" + health +
+                '}';
+    }
 }

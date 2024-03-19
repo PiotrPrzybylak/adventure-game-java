@@ -8,6 +8,7 @@ import java.util.Random;
 class Skeleton extends Actor {
 
     private final Random random = new Random();
+
     public Skeleton(Cell cell) {
         super(cell);
     }
@@ -22,5 +23,10 @@ class Skeleton extends Actor {
         int i = random.nextInt(4);
         Direction direction = Direction.values()[i];
         move(direction);
+    }
+
+    @Override
+    public void fight() {
+        health -= 5;
     }
 }

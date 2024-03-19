@@ -11,6 +11,8 @@ class Cell {
 
     private boolean hasKey;
 
+    private Player player;
+
     Cell(GameMap gameMap, int x, int y, TileType type) {
         this.gameMap = gameMap;
         this.x = x;
@@ -24,9 +26,6 @@ class Cell {
 
     public void setActor(Actor actor) {
         this.actor = actor;
-        if (type == TileType.STAIRS && actor instanceof Player) {
-            gameMap.loadNextLevel();
-        }
     }
 
     public Actor getActor() {
@@ -38,7 +37,16 @@ class Cell {
     }
 
     public TileType getTileType() {
-        return actor != null ? actor.getTileType() : hasKey ? TileType.KEY : type;
+        if (actor != null) {
+            return actor.getTileType();
+        }
+        if (player != null) {
+            return player.getTileType();
+        }
+        if (hasKey) {
+            return TileType.KEY;
+        }
+        return  type;
     }
 
     public int getX() {
@@ -50,7 +58,7 @@ class Cell {
     }
 
     public boolean canEnter() {
-        return (type == TileType.FLOOR || type == TileType.STAIRS) && actor == null;
+        return (type == TileType.FLOOR || type == TileType.STAIRS) && actor == null & player == null;
     }
 
     public void addKey() {
@@ -58,5 +66,24 @@ class Cell {
             throw new RuntimeException("Key can only be placed on the floor!");
         }
         hasKey = true;
+    }
+
+    @Override
+    public String toString() {
+        return "Cell{" +
+                ", x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
+    public void removePlayer() {
+        player = null;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+        if (type == TileType.STAIRS) {
+            gameMap.loadNextLevel();
+        }
     }
 }
