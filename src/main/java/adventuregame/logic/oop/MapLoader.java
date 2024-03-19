@@ -34,10 +34,10 @@ public class MapLoader implements adventuregame.logic.MapLoader {
                         case 'H' -> cell.setType(TileType.STAIRS);
                         case '.' -> {
                             cell.setType(TileType.FLOOR);
-                            if (keysNumber > 0) {
-                                keysNumber--;
-                                cell.addKey();
-                            }
+//                            if (keysNumber > 0) {
+//                                keysNumber--;
+//                                cell.addKey();
+//                            }
                         }
                         case 's' -> {
                             cell.setType(TileType.FLOOR);
