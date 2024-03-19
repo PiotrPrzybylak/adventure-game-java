@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public abstract class GameMapTest {
 
     @Test
-    public void should() {
+    public void playerMovesAround() {
         String map =
                 """
                 2 1
                 @.""";
 
 
-        Game game = getMapLoader(level -> new ReaderInputStream(new StringReader(map))).loadMap(1);
+        Game game = loadGameFromMap(map);
 
         game = game.movePlayer(Direction.EAST);
         assertEquals(".@", toString(game));
@@ -32,6 +32,38 @@ public abstract class GameMapTest {
         assertEquals("@.", toString(game));
         game = game.movePlayer(Direction.SOUTH);
         assertEquals("@.", toString(game));
+    }
+
+    @Test
+    public void playerCannotMoveOnMonster() {
+        String map =
+                """
+                2 1
+                @s""";
+
+
+        Game game = loadGameFromMap(map);
+
+        game = game.movePlayer(Direction.EAST);
+        assertEquals("@S", toString(game));
+    }
+
+    @Test
+    public void playerCannotMoveOntoTheWall() {
+        String map =
+                """
+                2 1
+                @#""";
+
+
+        Game game = loadGameFromMap(map);
+
+        game = game.movePlayer(Direction.EAST);
+        assertEquals("@#", toString(game));
+    }
+
+    private Game loadGameFromMap(String map) {
+        return getMapLoader(level -> new ReaderInputStream(new StringReader(map))).loadMap(1);
     }
 
     protected abstract MapLoader getMapLoader(LevelProvider levelProvider);
