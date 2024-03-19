@@ -28,5 +28,8 @@ class Skeleton extends Actor {
     @Override
     public void fight() {
         health -= 5;
+        if (health <= 0) {
+            cell.setActor(null);
+        }
     }
 }

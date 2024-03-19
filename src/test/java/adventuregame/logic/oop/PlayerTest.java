@@ -66,10 +66,8 @@ class PlayerTest {
     @Test
     void fights_classic() {
         GameMap gameMap = new GameMap(2, 1, TileType.FLOOR, 1, null);
-        Cell skeletonCell = gameMap.getCell(1, 0);
-        Skeleton skeleton = new Skeleton(skeletonCell);
-        skeletonCell.setActor(skeleton);
-        Player player = new Player(new Cell(gameMap, 0, 0, null));
+        Player player = new Player(gameMap.getCell(0, 0));
+        Skeleton skeleton = new Skeleton(gameMap.getCell(1, 0));
 
         player.move(Direction.EAST);
 

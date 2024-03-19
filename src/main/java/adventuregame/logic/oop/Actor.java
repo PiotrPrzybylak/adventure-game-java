@@ -4,7 +4,7 @@ import adventuregame.logic.Direction;
 import adventuregame.logic.TileType;
 
 abstract class Actor {
-    private Cell cell;
+    protected Cell cell;
     protected int health = 10;
 
     public Actor(Cell cell) {

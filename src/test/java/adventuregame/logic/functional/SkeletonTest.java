@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 public class SkeletonTest {
 
     @Test
-    public void should() {
+    public void shouldGoSouth() {
         ImmutableRandomDirector director = mock(ImmutableRandomDirector.class);
         when(director.getRandomDirection()).thenReturn(Direction.SOUTH);
         Skeleton skeleton = new Skeleton(new Location(0, 0), director, 10);
