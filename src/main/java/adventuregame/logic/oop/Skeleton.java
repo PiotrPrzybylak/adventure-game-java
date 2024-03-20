@@ -3,8 +3,6 @@ package adventuregame.logic.oop;
 import adventuregame.logic.Direction;
 import adventuregame.logic.TileType;
 
-import java.util.Random;
-
 class Skeleton implements Actor {
 
     private final RandomDirector director;

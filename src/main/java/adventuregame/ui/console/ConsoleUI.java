@@ -25,7 +25,7 @@ public class ConsoleUI {
             SKELETON, 'S',
             PLAYER, '@',
             STAIRS, 'H',
-            KEY,  'K');
+            KEY, 'K');
 
     private ConsoleUI(Game game) {
         this.game = game;

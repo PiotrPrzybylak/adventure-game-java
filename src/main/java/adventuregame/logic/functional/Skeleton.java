@@ -29,7 +29,7 @@ class Skeleton extends Actor<Skeleton> {
     }
 
     private Skeleton move(Direction direction, GameMap map) {
-        Location newLocation =  map.getNeighbor(getLocation(), direction)
+        Location newLocation = map.getNeighbor(getLocation(), direction)
                 .filter(map::canEnter)
                 .orElse(getLocation());
         return create(newLocation);

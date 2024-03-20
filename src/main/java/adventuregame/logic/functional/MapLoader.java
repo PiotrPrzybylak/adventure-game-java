@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static adventuregame.logic.TileType.STAIRS;
 import static adventuregame.logic.TileType.EMPTY;
 import static adventuregame.logic.TileType.FLOOR;
+import static adventuregame.logic.TileType.STAIRS;
 import static adventuregame.logic.TileType.WALL;
 
 public class MapLoader implements adventuregame.logic.MapLoader {

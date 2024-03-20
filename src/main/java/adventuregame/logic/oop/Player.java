@@ -6,7 +6,9 @@ import adventuregame.logic.TileType;
 class Player {
 
     private Cell cell;
+
     protected int health = 10;
+
     public Player(Cell cell) {
         this.cell = cell;
         this.cell.setPlayer(this);

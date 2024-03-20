@@ -23,7 +23,7 @@ public class App {
     }
 
     public static Game loadGameMap(boolean oop) {
-        MapLoader mapLoader = MapLoader.getMapLoader(oop,new ClassPathLevelsProvider());
+        MapLoader mapLoader = MapLoader.getMapLoader(oop, new ClassPathLevelsProvider());
         return mapLoader.loadMap(1);
     }
 }

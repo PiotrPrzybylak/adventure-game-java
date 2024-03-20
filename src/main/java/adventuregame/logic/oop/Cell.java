@@ -46,7 +46,7 @@ class Cell {
         if (hasKey) {
             return TileType.KEY;
         }
-        return  type;
+        return type;
     }
 
     public int getX() {

@@ -15,7 +15,7 @@ record StaticMap(int width, int height, TileType[][] cells) implements DrawableM
 
     @Override
     public TileType getDrawable(int x, int y) {
-       return getCell(new Location(x, y));
+        return getCell(new Location(x, y));
     }
 
     private TileType getCell(Location location) {
