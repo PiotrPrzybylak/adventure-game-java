@@ -41,7 +41,7 @@ public class MapLoader implements adventuregame.logic.MapLoader {
                         }
                         case 's' -> {
                             cell.setType(TileType.FLOOR);
-                            new Skeleton(cell);
+                            new Skeleton(cell, new TrulyRandomDirector());
                         }
                         case '@' -> {
                             cell.setType(TileType.FLOOR);

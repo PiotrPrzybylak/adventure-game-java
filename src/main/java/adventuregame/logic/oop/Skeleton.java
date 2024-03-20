@@ -10,14 +10,6 @@ class Skeleton extends Actor {
     private static final Random random = new Random();
     private final RandomDirector director;
 
-    public Skeleton(Cell cell) {
-        this(cell, () -> {
-            int i = random.nextInt(4);
-            Direction direction = Direction.values()[i];
-            return direction;
-        });
-    }
-
     public Skeleton(Cell cell, RandomDirector director) {
         super(cell);
         this.director = director;

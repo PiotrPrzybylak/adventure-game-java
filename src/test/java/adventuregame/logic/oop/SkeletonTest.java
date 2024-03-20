@@ -17,7 +17,7 @@ class SkeletonTest {
     void fights_classic() {
 
         Cell cell = new Cell(null, 0, 0, null);
-        Skeleton skeleton = new Skeleton(cell);
+        Skeleton skeleton = new Skeleton(cell, null);
 
         assertEquals(10, skeleton.getHealth());
         assertSame(skeleton, cell.getActor());
@@ -36,7 +36,7 @@ class SkeletonTest {
     void fights_mockist() {
 
         Cell cell = mock(Cell.class);
-        Skeleton skeleton = new Skeleton(cell);
+        Skeleton skeleton = new Skeleton(cell, null);
 
         assertEquals(10, skeleton.getHealth());
 
