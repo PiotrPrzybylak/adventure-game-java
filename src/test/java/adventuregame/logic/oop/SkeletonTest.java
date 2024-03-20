@@ -1,10 +1,15 @@
 package adventuregame.logic.oop;
 
+import adventuregame.logic.TileType;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static adventuregame.logic.Direction.WEST;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class SkeletonTest {
 
@@ -46,6 +51,40 @@ class SkeletonTest {
         verify(cell).setActor(null);
     }
 
+
+    @Test
+    void attacks_classic() {
+
+        GameMap gameMap = new GameMap(2, 1, TileType.FLOOR, 1, null);
+        Player player = new Player(gameMap.getCell(0, 0));
+        RandomDirector director = () -> WEST;
+        Skeleton skeleton = new Skeleton(gameMap.getCell(1, 0), director);
+
+        skeleton.move();
+
+        assertEquals(8, player.getHealth());
+        assertEquals(5, skeleton.getHealth());
+
+
+    }
+
+    @Test
+    void attacks_mockist() {
+
+        Cell cell = mock(Cell.class);
+        Cell cellWithPlayer = mock(Cell.class);
+        when(cell.getNeighbor(-1, 0)).thenReturn(cellWithPlayer);
+        Player player = mock(Player.class);
+        when(cellWithPlayer.getPlayer()).thenReturn(player);
+        RandomDirector director = mock(RandomDirector.class);
+        when(director.getRandomDirection()).thenReturn(WEST);
+        Skeleton skeleton = new Skeleton(cell, director);
+
+        skeleton.move();
+
+        assertEquals(5, skeleton.getHealth());
+        verify(player).fight();
+    }
 
 
 }

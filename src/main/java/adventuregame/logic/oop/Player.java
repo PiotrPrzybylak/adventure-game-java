@@ -32,7 +32,7 @@ class Player {
         } else if (nextCell.getActor() != null) {
             Actor enemy = nextCell.getActor();
             enemy.fight();
-            health -= 2;
+            fight();
         }
     }
 
@@ -54,4 +54,7 @@ class Player {
         return cell.getY();
     }
 
+    public void fight() {
+        health -= 2;
+    }
 }

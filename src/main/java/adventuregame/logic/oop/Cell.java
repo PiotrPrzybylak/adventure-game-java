@@ -86,4 +86,8 @@ class Cell {
             gameMap.loadNextLevel();
         }
     }
+
+    public Player getPlayer() {
+        return player;
+    }
 }

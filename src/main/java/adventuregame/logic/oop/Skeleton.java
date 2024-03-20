@@ -7,10 +7,20 @@ import java.util.Random;
 
 class Skeleton extends Actor {
 
-    private final Random random = new Random();
+    private static final Random random = new Random();
+    private final RandomDirector director;
 
     public Skeleton(Cell cell) {
+        this(cell, () -> {
+            int i = random.nextInt(4);
+            Direction direction = Direction.values()[i];
+            return direction;
+        });
+    }
+
+    public Skeleton(Cell cell, RandomDirector director) {
         super(cell);
+        this.director = director;
     }
 
     @Override
@@ -20,10 +30,31 @@ class Skeleton extends Actor {
 
     @Override
     public void move() {
-        int i = random.nextInt(4);
-        Direction direction = Direction.values()[i];
-        move(direction);
+        move(director.getRandomDirection());
     }
+
+    private void move(Direction direction) {
+        move(direction.dx, direction.dy);
+    }
+
+    private void move(int dx, int dy) {
+        Cell nextCell = cell.getNeighbor(dx, dy);
+        if (nextCell == null) {
+        } else if (nextCell.canEnter()) {
+            goTo(nextCell);
+        } else if (nextCell.getPlayer() != null) {
+            Player enemy = nextCell.getPlayer();
+            enemy.fight();
+            fight();
+        }
+    }
+
+    private void goTo(Cell nextCell) {
+        cell.setActor(null);
+        nextCell.setActor(this);
+        cell = nextCell;
+    }
+
 
     @Override
     public void fight() {
