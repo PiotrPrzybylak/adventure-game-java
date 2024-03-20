@@ -5,13 +5,17 @@ import adventuregame.logic.TileType;
 
 import java.util.Random;
 
-class Skeleton extends Actor {
+class Skeleton implements Actor {
 
-    private static final Random random = new Random();
     private final RandomDirector director;
 
+    private Cell cell;
+
+    private int health = 10;
+
     public Skeleton(Cell cell, RandomDirector director) {
-        super(cell);
+        this.cell = cell;
+        this.cell.setActor(this);
         this.director = director;
     }
 
@@ -23,6 +27,14 @@ class Skeleton extends Actor {
     @Override
     public void move() {
         move(director.getRandomDirection());
+    }
+
+    @Override
+    public void fight() {
+        health -= 5;
+        if (health <= 0) {
+            cell.setActor(null);
+        }
     }
 
     private void move(Direction direction) {
@@ -47,12 +59,8 @@ class Skeleton extends Actor {
         cell = nextCell;
     }
 
-
-    @Override
-    public void fight() {
-        health -= 5;
-        if (health <= 0) {
-            cell.setActor(null);
-        }
+    // TODO only used in tests
+    public int getHealth() {
+        return health;
     }
 }
