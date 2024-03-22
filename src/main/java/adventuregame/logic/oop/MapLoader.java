@@ -1,5 +1,6 @@
 package adventuregame.logic.oop;
 
+import adventuregame.logic.ActorDirector;
 import adventuregame.logic.Game;
 import adventuregame.logic.LevelProvider;
 import adventuregame.logic.TileType;
@@ -8,9 +9,15 @@ import java.util.Scanner;
 
 public class MapLoader implements adventuregame.logic.MapLoader {
     private final LevelProvider levelProvider;
+    private final RandomDirector randomDirector;
 
     public MapLoader(LevelProvider levelProvider) {
+        this(levelProvider, new TrulyRandomDirector()::getRandomDirection);
+    }
+
+    public MapLoader(LevelProvider levelProvider, ActorDirector actorDirector) {
         this.levelProvider = levelProvider;
+        this.randomDirector = actorDirector::getRandomDirection;
     }
 
     public Game loadMap(int level) {
@@ -41,7 +48,7 @@ public class MapLoader implements adventuregame.logic.MapLoader {
                         }
                         case 's' -> {
                             cell.setType(TileType.FLOOR);
-                            new Skeleton(cell, new TrulyRandomDirector());
+                            new Skeleton(cell, randomDirector);
                         }
                         case '@' -> {
                             cell.setType(TileType.FLOOR);

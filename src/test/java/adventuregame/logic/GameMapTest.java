@@ -62,6 +62,34 @@ public abstract class GameMapTest {
         assertEquals("@#", toString(game));
     }
 
+    @Test
+    public void player_and_monsters_runing_around() {
+        String map = """
+                5 5
+                @....
+                .....
+                s....
+                ..s..
+                .....
+                """;
+
+        Game game = loadGameFromMap(map, () -> Direction.EAST);
+
+        game = game.movePlayer(Direction.EAST);
+        assertEquals("""
+                .@...
+                .....
+                .S...
+                ...S.
+                .....""", toString(game));
+    }
+
+    private Game loadGameFromMap(String map, ActorDirector actorDirector) {
+        return getMapLoader(level -> new ReaderInputStream(new StringReader(map)), actorDirector).loadMap(1);
+    }
+
+    protected abstract MapLoader getMapLoader(LevelProvider levelProvider, ActorDirector actorDirector);
+
     private Game loadGameFromMap(String map) {
         return getMapLoader(level -> new ReaderInputStream(new StringReader(map))).loadMap(1);
     }
@@ -73,6 +101,9 @@ public abstract class GameMapTest {
         for (int y = 0; y < game.height(); y++) {
             for (int x = 0; x < game.width(); x++) {
                 result += ConsoleUI.tilesToChars.get(game.getDrawable(x, y));
+            }
+            if (y != game.height() - 1) {
+                result += "\n";
             }
         }
         return result;

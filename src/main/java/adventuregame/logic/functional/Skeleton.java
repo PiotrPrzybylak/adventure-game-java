@@ -10,7 +10,11 @@ class Skeleton extends Actor<Skeleton> {
     private final int health;
 
     public Skeleton(Location location) {
-        this(location, new ImmutableRandomDirector(), 10);
+        this(location, new ImmutableRandomDirector());
+    }
+
+    public Skeleton(Location location, ImmutableRandomDirector random) {
+        this(location, random, 10);
     }
 
     Skeleton(Location location, ImmutableRandomDirector random, int health) {
