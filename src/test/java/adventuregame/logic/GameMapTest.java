@@ -12,10 +12,9 @@ public abstract class GameMapTest {
 
     @Test
     public void playerMovesAround() {
-        String map =
-                """
-                        2 1
-                        @.""";
+        String map = """
+                2 1
+                @.""";
 
 
         Game game = loadGameFromMap(map);
@@ -36,10 +35,9 @@ public abstract class GameMapTest {
 
     @Test
     public void playerCannotMoveOnMonster() {
-        String map =
-                """
-                        2 1
-                        @s""";
+        String map = """
+                2 1
+                @s""";
 
 
         Game game = loadGameFromMap(map);
@@ -50,10 +48,9 @@ public abstract class GameMapTest {
 
     @Test
     public void playerCannotMoveOntoTheWall() {
-        String map =
-                """
-                        2 1
-                        @#""";
+        String map = """
+                2 1
+                @#""";
 
 
         Game game = loadGameFromMap(map);
