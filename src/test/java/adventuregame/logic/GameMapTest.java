@@ -60,7 +60,7 @@ public abstract class GameMapTest {
     }
 
     @Test
-    public void player_and_monsters_runing_around() {
+    public void player_and_monsters_running_around() {
         String map = """
                 5 5
                 @....
