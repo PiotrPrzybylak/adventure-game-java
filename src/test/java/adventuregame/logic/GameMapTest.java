@@ -94,16 +94,16 @@ public abstract class GameMapTest {
     protected abstract MapLoader getMapLoader(LevelProvider levelProvider);
 
     private String toString(Game game) {
-        String result = "";
+        var result = new StringBuilder();
         for (int y = 0; y < game.height(); y++) {
             for (int x = 0; x < game.width(); x++) {
-                result += ConsoleUI.tilesToChars.get(game.getDrawable(x, y));
+                result.append(ConsoleUI.tilesToChars.get(game.getDrawable(x, y)));
             }
             if (y != game.height() - 1) {
-                result += "\n";
+                result.append("\n");
             }
         }
-        return result;
+        return result.toString();
     }
 
 }
